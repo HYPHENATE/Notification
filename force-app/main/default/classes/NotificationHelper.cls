@@ -25,11 +25,7 @@ public with sharing class NotificationHelper {
             
             // if only 1 entry in the list process if not split and repeat until we get the value
             if(sOQLFields.size() == 1) {
-                try {
-                    resultObj = record.get(sOQLFields[0]);
-                } catch (Exception ex) {
-                    resultObj = null;
-                }                
+                resultObj = record.get(sOQLFields[0]);            
             } else {
                 string sOQLRelationship = sOQLFields.remove(0);
                 resultObj = getSObjectField(record.getSobject(sOQLRelationship), String.join(sOQLFields, '.'));         

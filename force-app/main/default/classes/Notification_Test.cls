@@ -43,7 +43,21 @@ public with sharing class Notification_Test {
         Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
         insert con;
 
-        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'LastNameINGFIELD');
+        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Email');
+        system.assertEquals(null, notificationmessage, 'Correct Message Returned');
+
+    }
+
+    /**
+     * @description error test parent field
+    */
+    static testMethod void testerrorparent(){
+        Account acc = new Account(Name='TestAccount1');
+        insert acc;
+        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
+        insert con;
+
+        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Account.NameINGERROR');
         system.assertEquals(Label.NotificationErrorProcessing, notificationmessage, 'Correct Message Returned');
 
     }
