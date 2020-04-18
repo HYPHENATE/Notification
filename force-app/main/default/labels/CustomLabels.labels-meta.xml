@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>NotificationErrorProcessing</fullName>
+        <categories>Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NotificationErrorProcessing</shortDescription>
+        <value>There was an error processing this request please contact your Administrator</value>
+    </labels>
+</CustomLabels>
