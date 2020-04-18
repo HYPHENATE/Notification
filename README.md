@@ -20,13 +20,12 @@ A simple component that you can load of any Lightning Page to display a field va
 </a>
 
 1. Ensure my domain is actived and deployed
-2. Ensure path is activated
-3. Install using the deploy to salesforce link above
-4. Start configuration
+2. Install using the deploy to salesforce link above
+3. Start configuration
 
 ## Part 2: Configuration
 
-TODO
+<<insert video link here>>
 
 ## Part 3: Limitations
 - No community support
