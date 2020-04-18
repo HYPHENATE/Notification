@@ -26,7 +26,7 @@ public with sharing class NotificationController {
             // pull in the object we are on
             sObject sobj = Database.query(query);
             // get the return message
-            object returnmessage = HelpMessageHelper.getSObjectField(sobj, fieldAPIName);
+            object returnmessage = NotificationHelper.getSObjectField(sobj, fieldAPIName);
             // convert object to string
             message = string.valueof(returnmessage);
         } catch (Exception e){
