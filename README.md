@@ -12,7 +12,8 @@ A simple component that you can load of any Lightning Page to display a field va
 ### 1.0 - Initial release
 - Basic Notification component for any object / lightning page internally
 - Supports any field type
-- Support for parent fields i.e. from Opportunity Account.Name or Account.Owner.Name
+- Support for parent fields i.e. from Opportunity Account.Name or Account.Owner.Name or Account.Alert_Message__c
+- Ability to change the Notification banner colour
 
 ## Part 1: Installation
 
