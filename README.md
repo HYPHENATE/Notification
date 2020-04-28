@@ -5,6 +5,8 @@
 
 A simple component that you can load of any Lightning Page to display a field value from the current record or from parent records. You can set the colour and title within the component and also using native salesforce configuration determine when it should appear and who to.
 
+<img src="https://github.com/HYPHENATE/Notification/blob/master/NotificationComponent.png?raw=true" width="800px"/>
+
 ## Verion Control
 
 ### 1.0 - Initial release
