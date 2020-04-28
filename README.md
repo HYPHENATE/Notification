@@ -32,7 +32,7 @@ A simple component that you can load of any Lightning Page to display a field va
 3. Add in an Alert Title for the Notification Message
 4. Add in the field which contains the message you would like to display. This can be from a parent record. For example: 'Account.Description'
 
-<iframe width="853" height="480" src="https://web.microsoftstream.com/embed/video/6aa88747-273b-42cb-95b6-87d10ee7908b?autoplay=false&amp;showinfo=true" allowfullscreen style="border:none;"></iframe>
+ <a href="https://web.microsoftstream.com/embed/video/6aa88747-273b-42cb-95b6-87d10ee7908b?autoplay=false&amp;showinfo=true">Notification Setup Video</a>
 
 ## Part 3: Limitations
 - No community support
