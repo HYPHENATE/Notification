@@ -22,7 +22,7 @@ public with sharing class NotificationController {
         // try and get the message
         try {
             // setup our query
-            string query = 'SELECT ' + fieldAPIName + ' FROM ' + objectName + ' WHERE ID=:recordId';
+            string query = 'SELECT ' + fieldAPIName + ' FROM ' + objectName + ' WHERE ID=:recordId WITH SECURITY_ENFORCED';
             // pull in the object we are on
             sObject sobj = Database.query(query);
             // get the return message
@@ -31,7 +31,12 @@ public with sharing class NotificationController {
             message = string.valueof(returnmessage);
         } catch (Exception e){
             system.debug(e.getMessage());
-            message = Label.NotificationErrorProcessing;
+            string errorMessage = e.getMessage();
+            if(errorMessage.contains('Insufficient permissions')){
+                message = Label.NotificationNoPermissions;
+            } else {
+                message = Label.NotificationErrorProcessing;    
+            }
         }
         
         // return our message

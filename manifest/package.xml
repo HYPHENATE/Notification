@@ -12,6 +12,7 @@
     </types>
     <types>
       <members>NotificationErrorProcessing</members>
+      <members>NotificationNoPermissions</members>
       <name>CustomLabel</name>
     </types>
     <version>48.0</version>

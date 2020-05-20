@@ -62,4 +62,28 @@ public with sharing class Notification_Test {
 
     }
 
+
+    /**
+     * @description error user permission test
+    */
+    static testMethod void testpermissionerror(){
+        Account acc = new Account(Name='TestAccount1', Rating='Hot');
+        insert acc;
+
+        String orgId = UserInfo.getOrganizationId();
+        String dateString = String.valueof(Datetime.now()).replace(' ','').replace(':','').replace('-','');
+        Integer randomInt = Integer.valueOf(math.rint(math.random()*1000000));
+        String uniqueName = orgId + dateString + randomInt;
+        Profile profileId = [SELECT Id FROM Profile WHERE Name = 'Chatter Free User' LIMIT 1];
+        User usr = new User(LastName = 'PROBERT', FirstName='DANIEL', Alias = 'jliv', Email = uniqueName + '@test' + orgId + '.org',
+                           Username = uniqueName + '@test' + orgId + '.org', ProfileId = profileId.id, TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US',
+                           EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US');
+        insert usr;
+        system.runas(usr){
+            string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', 'Rating');
+            system.assertEquals(Label.NotificationNoPermissions, notificationmessage, 'Correct Message Returned');
+        }
+
+    }
+
 }
