@@ -1,3 +1,13 @@
+/**
+ * @description       : 
+ * @author            : daniel@hyphen8.com
+ * @group             : 
+ * @last modified on  : 01-08-2021
+ * @last modified by  : daniel@hyphen8.com
+ * Modifications Log 
+ * Ver   Date         Author               Modification
+ * 1.0   01-08-2021   daniel@hyphen8.com   Initial Version
+**/
 import { LightningElement, track, api } from 'lwc';
 
 import getNotificationMessage from '@salesforce/apex/NotificationController.getMessage';
@@ -7,14 +17,14 @@ export default class Notification extends LightningElement {
     // setup api elements
     @api recordId;
     @api objectApiName;
-    @api notificationtitle;
+    @api notificationTitle;
     @api fieldAPIName;
-    @api componentstyling;
+    @api componentStyling;
 
     // setup track elements
-    @track message;
-    @track errors;
-    @track hasMessages;
+    message;
+    errors;
+    hasMessages;
 
     // get our message to display
     handleGetMessages() {
@@ -39,8 +49,8 @@ export default class Notification extends LightningElement {
     }
 
     // get the styling for the alert based on the property
-    get alertstyling() {
-        return 'slds-notify slds-p-around_medium ' + this.componentstyling;
+    get alertStyling() {
+        return 'slds-notify slds-p-around_medium ' + this.componentStyling;
     }
 
     // intial call back get out data

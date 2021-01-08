@@ -9,6 +9,9 @@ A simple component that you can load of any Lightning Page to display a field va
 
 ## Verion Control
 
+### 1.0.1
+- included unlocked package version configuration
+- upgrade to API 50
 ### 1.0 - Initial release
 - Basic Notification component for any object / lightning page internally
 - Supports any field type
@@ -21,6 +24,10 @@ A simple component that you can load of any Lightning Page to display a field va
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
+
+Unlocked Package Installs URLS
+- Production: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t67000000SaF0AAK
+- Sandbox: https://test.salesforce.com/packaging/installPackage.apexp?p0=04t67000000SaF0AAK
 
 1. Ensure my domain is actived and deployed
 2. Install using the deploy to salesforce link above
