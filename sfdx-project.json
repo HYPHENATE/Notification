@@ -13,6 +13,7 @@
     "sourceApiVersion": "50.0",
     "packageAliases": {
         "Notification": "0Ho67000000TN4OCAW",
-        "Notification@1.0.0-1": "04t67000000SaF0AAK"
+        "Notification@1.0.0-1": "04t67000000SaF0AAK",
+        "Notification@1.0.0-2": "04t67000000SaW1AAK"
     }
 }
