@@ -3,12 +3,15 @@
 
 # Notification
 
-A simple component that you can load of any Lightning Page to display a field value from the current record or from parent records. You can set the colour and title within the component and also using native salesforce configuration determine when it should appear and who to.
-
-<img src="https://github.com/HYPHENATE/Notification/blob/master/NotificationComponent.png?raw=true" width="800px"/>
+A simple component that you can load of any Lightning Page to display a field value or check for a specific value of a field or fields to display a specific message from the current record or from parent records. You can set the colour and title within the component and also using native salesforce configuration determine when it should appear and who to.
 
 ## Verion Control
 
+### 1.3.0
+- upgrade to API 54
+- include ability perform a where clause base check for validation on message
+- moved to new SLDS Scoped Notification format
+- improve accessibility through use of icons to display within component
 ### 1.0.1
 - included unlocked package version configuration
 - upgrade to API 50
@@ -21,8 +24,8 @@ A simple component that you can load of any Lightning Page to display a field va
 ## Part 1: Installation
 
 Unlocked Package Installs URLS
-- Production: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t67000000SaW1AAK
-- Sandbox: https://test.salesforce.com/packaging/installPackage.apexp?p0=04t67000000SaW1AAK
+- Production: https://login.salesforce.com/packaging/installPackage.apexp?p0=04t67000000xp7KAAQ
+- Sandbox: https://test.salesforce.com/packaging/installPackage.apexp?p0=04t67000000xp7KAAQ
 
 1. Ensure my domain is actived and deployed
 2. Install using the deploy to salesforce link above
@@ -30,15 +33,38 @@ Unlocked Package Installs URLS
 
 ## Part 2: Configuration
 
-1. Edit desired Lightning Page
-2. Drag the 'Notification' component onto the page
-3. Add in an Alert Title for the Notification Message
-4. Add in the field which contains the message you would like to display. This can be from a parent record. For example: 'Account.Description'
+### Configure Notification
+ 
+* Visit a record that you want to display a notification on
+* Press Setup
+* Select Edit Page
+* Within Components scroll down to Custom
+* Find notification
+* Drag this into the main builder window to the Location you want to display your notification
+* Now you need to configure the following fields:
+    * Notification Title
+    * Query Field API Name - this is the field value that you want to output on screen - supports pull from parent records up to 5 high
+    * Output Styling
+    * Notification Icon
 
- <a href="https://web.microsoftstream.com/embed/video/6aa88747-273b-42cb-95b6-87d10ee7908b?autoplay=false&amp;showinfo=true">Notification Setup Video</a>
+### Config Alert
+
+* Visit a record that you want to display a notification on
+* Press Setup
+* Select Edit Page
+* Within Components scroll down to Custom
+* Find notification
+* Drag this into the main builder window to the Location you want to display your notification
+* Now you need to configure the following fields:
+    * Notification Title
+    * Output Styling
+    * Notification Message
+    * Notification Criteria
+    * Notification Icon
+
 
 ## Part 3: Limitations
 - No community support
 
 ## Credits
-
+@hyphen8.com
