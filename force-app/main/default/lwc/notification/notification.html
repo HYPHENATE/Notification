@@ -1,7 +1,7 @@
 <!--
   @description       : Reusable notification component for use throughout salesforce on any object
   @author            : daniel@hyphen8.com
-  @last modified on  : 01-08-2021
+  @last modified on  : 16/06/2022
   @last modified by  : daniel@hyphen8.com
   Modifications Log 
   Ver   Date         Author               Modification
@@ -9,14 +9,13 @@
 -->
 <template>
     <template if:true={hasMessages}> 
-        <div class="slds-notify_container slds-is-relative" style="z-index:0">
-            <div class={alertStyling} role="alert">
-                <div class="slds-notify__content slds-align_absolute-center slds-m-bottom_medium">
-                    <h2 class="slds-text-heading_medium ">{notificationTitle}</h2>
-                </div>
-                <div class="slds-notify__content slds-align_absolute-center">
-                    <div id="messageoutput" class="slds-text-heading_small slds-text-body_regular">{message}</div>
-                </div>
+        <div class={alertStyling} role="status">    
+            <div class="slds-media__figure">
+                <lightning-icon icon-name={notificationIcon} variant={scopedVariant} alternative-text={notificationTitle} title={notificationTitle} size="small" ></lightning-icon>
+            </div>
+            <div class="slds-media__body">
+                <div class="slds-text-heading_medium">{notificationTitle}</div>
+                <div class="slds-text-body_regular">{message}</div>
             </div>
         </div>
     </template>

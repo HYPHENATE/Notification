@@ -5,60 +5,94 @@
  * @group           Tests
 */
 @isTest
-public with sharing class Notification_Test {
+public class Notification_Test {
     
 
     /**
      * @description basic simple test
     */
-    static testMethod void testcurrentrecordfield(){
+    @isTest
+    static void testcurrentrecordfield(){
         Account acc = new Account(Name='TestAccount1');
         insert acc;
 
-        string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', 'Name');
-        system.assertEquals('TestAccount1', notificationmessage, 'Correct Message Returned');
+        string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', 'Name', null);
+        system.assertEquals('TestAccount1', notificationmessage, 'Different message returned');
 
     }
 
     /**
      * @description basic parent test
     */
-    static testMethod void testparentrecordfield(){
+    @isTest
+    static void testparentrecordfield(){
         Account acc = new Account(Name='TestAccount1');
         insert acc;
         Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
         insert con;
 
-        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Account.Name');
-        system.assertEquals('TestAccount1', notificationmessage, 'Correct Message Returned');
+        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Account.Name', null);
+        system.assertEquals('TestAccount1', notificationmessage, 'Different message returned');
 
     }
 
     /**
      * @description error test
     */
-    static testMethod void testerror(){
+    @isTest
+    static void testerror(){
         Account acc = new Account(Name='TestAccount1');
         insert acc;
         Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
         insert con;
 
-        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Email');
-        system.assertEquals(null, notificationmessage, 'Correct Message Returned');
+        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Email', null);
+        system.assertEquals(null, notificationmessage, 'Different message returned');
 
     }
 
     /**
      * @description error test parent field
     */
-    static testMethod void testerrorparent(){
+    @isTest
+    static void testerrorparent(){
         Account acc = new Account(Name='TestAccount1');
         insert acc;
         Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
         insert con;
 
-        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Account.NameINGERROR');
-        system.assertEquals(Label.NotificationErrorProcessing, notificationmessage, 'Correct Message Returned');
+        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Account.NameINGERROR', null);
+        system.assertEquals(System.Label.NotificationErrorProcessing, notificationmessage, 'Different message returned');
+
+    }
+
+    /**
+     * @description query with where clause get a response
+    */
+    @isTest
+    static void testSuccessWhereClause(){
+        Account acc = new Account(Name='TestAccount1', Rating='Hot');
+        insert acc;
+        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
+        insert con;
+
+        string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', null, 'Rating = \'Hot\'');
+        system.assertEquals(System.Label.NotificationValidationMatch, notificationmessage, 'Different message returned');
+
+    }
+
+    /**
+     * @description query with where clause get no response
+    */
+    @isTest
+    static void testSuccessWhereClauseFail(){
+        Account acc = new Account(Name='TestAccount1', Rating='Hot');
+        insert acc;
+        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
+        insert con;
+
+        string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', null, 'Rating = \'Cold\'');
+        system.assertNotEquals(System.Label.NotificationValidationMatch, notificationmessage, 'Different message returned');
 
     }
 
