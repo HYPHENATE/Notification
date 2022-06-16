@@ -20,7 +20,7 @@ export default class Notification extends LightningElement {
     @api objectApiName;
     @api notificationTitle;
     @api fieldAPIName;
-    @api notificationStyling;
+    @api componentStyling;
     @api notificationMessage;
     @api notificationCriteria;
     @api notificationIcon;
@@ -30,13 +30,13 @@ export default class Notification extends LightningElement {
     hasMessages;
 
     get scopedVariant() {
-        if(this.notificationStyling == 'slds-theme_success'){
+        if(this.componentStyling == 'slds-theme_success'){
             return 'inverse';
-        } else if(this.notificationStyling == 'slds-theme_warning'){
+        } else if(this.componentStyling == 'slds-theme_warning'){
             return 'warning';
-        } else if(this.notificationStyling == 'slds-theme_error'){
+        } else if(this.componentStyling == 'slds-theme_error'){
             return 'inverse';
-        } else if(this.notificationStyling == 'slds-theme_info'){
+        } else if(this.componentStyling == 'slds-theme_info'){
             return 'inverse';
         } else {
             return '';
@@ -81,7 +81,7 @@ export default class Notification extends LightningElement {
 
     // get the styling for the alert based on the property
     get alertStyling() {
-        return 'slds-scoped-notification slds-media slds-media_center slds-is-relative slds-var-p-around_medium ' + this.notificationStyling;
+        return 'slds-scoped-notification slds-media slds-media_center slds-is-relative slds-var-p-around_medium ' + this.componentStyling;
     }
 
     // intial call back get out data
