@@ -12,7 +12,8 @@
     </types>
     <types>
       <members>NotificationErrorProcessing</members>
+      <members>NotificationValidationMatch</members>
       <name>CustomLabel</name>
     </types>
-    <version>48.0</version>
+    <version>54.0</version>
 </Package>

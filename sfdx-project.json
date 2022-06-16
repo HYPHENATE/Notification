@@ -4,16 +4,19 @@
             "path": "force-app",
             "default": true,
             "package": "Notification",
-            "versionName": "Winter 21",
-            "versionNumber": "1.0.0.NEXT"
+            "versionName": "Summer '22",
+            "versionNumber": "1.3.0.NEXT"
         }
     ],
     "namespace": "",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "50.0",
+    "sourceApiVersion": "54.0",
     "packageAliases": {
         "Notification": "0Ho67000000TN4OCAW",
         "Notification@1.0.0-1": "04t67000000SaF0AAK",
-        "Notification@1.0.0-2": "04t67000000SaW1AAK"
+        "Notification@1.0.0-2": "04t67000000SaW1AAK",
+        "Notification@1.1.0-1": "04t67000000xp7AAAQ",
+        "Notification@1.2.0-1": "04t67000000xp7FAAQ",
+        "Notification@1.3.0-1": "04t67000000xp7KAAQ"
     }
 }

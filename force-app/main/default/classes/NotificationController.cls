@@ -1,5 +1,5 @@
 /**
-* @description      Simple notification component for outputting values from a record
+* @description      Enhanced notification component for display either a specific field value or a validation based on a query
 * @author           daniel@hyphen8.com
 * @date             18/04/2020
 * @group            Controller
@@ -8,33 +8,33 @@ public with sharing class NotificationController {
 
     /**
      * @description         aura method that takes a recordid / objectname and fieldapi name and then returns the contents of the field to the lightning component
-     * @param               recordId - this is the recordid you want to use to find data on the record
-     * @param               objectName - this is the objectname that the method has been opened on
-     * @param               fieldAPIName - this is the API name for the field you want to query
-     * @return              string - either the actual field data for a message based on what happened
+     * @param               recordId 
+     * @param               objectName 
+     * @param               fieldAPIName 
+     * @param               whereClause
+     * @return              string
     */
+    @SuppressWarnings('PMD.ExcessiveParameterList, PMD.ApexSOQLInjection')
     @AuraEnabled
-    public static String getMessage(string recordId, string objectName, string fieldAPIName)
-    {
-        // setup a string for the message we will return
+    public static String getMessage(string recordId, string objectName, string fieldAPIName, string whereClause){
         string message;
+        string query = '';
+        List<sObject> whereResults = new List<sObject>();
 
-        // try and get the message
         try {
-            // setup our query
-            string query = 'SELECT ' + fieldAPIName + ' FROM ' + objectName + ' WHERE ID=:recordId';
-            // pull in the object we are on
-            sObject sobj = Database.query(query);
-            // get the return message
-            object returnmessage = NotificationHelper.getSObjectField(sobj, fieldAPIName);
-            // convert object to string
-            message = string.valueof(returnmessage);
+            if(null != whereClause){
+                query += 'SELECT Id FROM ' + objectName + ' WHERE ' + whereClause + ' AND ID=:recordId';
+                whereResults = Database.query(query);
+                message = (whereResults.size() == 0) ? '' : System.Label.NotificationValidationMatch;
+            } else {
+                query += 'SELECT ' + fieldAPIName + ' FROM ' + objectName + ' WHERE ID=:recordId';
+                sObject sobj = Database.query(string.escapeSingleQuotes(query));
+                object returnmessage = NotificationHelper.getSObjectField(sobj, fieldAPIName);
+                message = string.valueof(returnmessage);
+            }
         } catch (Exception e){
-            system.debug(e.getMessage());
             message = Label.NotificationErrorProcessing;
         }
-        
-        // return our message
         return message;
     }
 }

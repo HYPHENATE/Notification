@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>50.0</apiVersion>
+    <apiVersion>54.0</apiVersion>
     <isExposed>true</isExposed>
     <targets>
         <target>lightning__RecordPage</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property name="notificationTitle" type="String" description="Define the title of notification box" required="true"/>
-            <property name="fieldAPIName" type="String" description="Define the api name of the field you want to output the message from" required="true"/>
-            <property name="componentStyling" type="String" datasource="slds-theme_info,slds-theme_warning,slds-theme_error,slds-theme_offline" description="Apply a style for the alert message" required="true" />
+            <property label="Notification Title" name="notificationTitle" type="String" description="Define the title of notification box" required="true"/>
+            <property label="Query Field API Name" name="fieldAPIName" type="String" description="Define the api name of the field you want to output the message from" required="false"/>
+            <property label="Output Styling" name="componentStyling" type="String" datasource="slds-scoped-notification_light,slds-theme_info,slds-theme_success,slds-theme_warning,slds-theme_error" description="Apply a style for the notification message" required="true" />
+            <property label="Notification Message" name="notificationMessage" type="String" description="Define the Notification Message you'd like to display" required="false"/>
+            <property label="Notification Criteria (WHERE Clause)" name="notificationCriteria" type="String" description="Name = 'ABC Account' AND custom_field__c = true" required="false"/>
+            <property label="Notification Icon" name="notificationIcon" type="String" datasource="utility:error,utility:warning,utility:success,utility:info" description="Apply an icon to your notification" required="false" default="utlity:info" />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
