@@ -1,9 +1,9 @@
 /**
- * @description     test class for Notification app
- * @author          daniel@hyphen8.com
- * @date            18/04/2020
- * @group           Tests
-*/
+ * @description       : Test class for Notification component
+ * @author            : daniel@hyphen8.com
+ * @last modified on  : 12-02-2024
+ * @last modified by  : daniel@hyphen8.com
+**/
 @isTest
 public class Notification_Test {
     
