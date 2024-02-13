@@ -1,13 +1,14 @@
 /**
-* @description      Enhanced notification component for display either a specific field value or a validation based on a query
-* @author           daniel@hyphen8.com
-* @date             18/04/2020
-* @group            Controller
-*/
+ * @description       : Enhanced notification component for display either a specific field value or a validation based on a query
+ * @author            : daniel@hyphen8.com
+ * @last modified on  : 13-02-2024
+ * @last modified by  : daniel@hyphen8.com
+**/
 public with sharing class NotificationController {
 
     /**
-     * @description         aura method that takes a recordid / objectname and fieldapi name and then returns the contents of the field to the lightning component
+     * @description         aura method that takes a recordid / objectname and fieldapi name 
+     *                      and then returns the contents of the field to the lightning component
      * @param               recordId 
      * @param               objectName 
      * @param               fieldAPIName 
@@ -16,7 +17,7 @@ public with sharing class NotificationController {
     */
     @SuppressWarnings('PMD.ExcessiveParameterList, PMD.ApexSOQLInjection')
     @AuraEnabled
-    public static String getMessage(string recordId, string objectName, string fieldAPIName, string whereClause){
+    public static String getMessage(String recordId, String objectName, String fieldAPIName, String whereClause){
         string message;
         string query = '';
         List<sObject> whereResults = new List<sObject>();
@@ -30,10 +31,11 @@ public with sharing class NotificationController {
                 query += 'SELECT ' + fieldAPIName + ' FROM ' + objectName + ' WHERE ID=:recordId';
                 sObject sobj = Database.query(string.escapeSingleQuotes(query));
                 object returnmessage = NotificationHelper.getSObjectField(sobj, fieldAPIName);
-                message = string.valueof(returnmessage);
+                String deserisalisedMessage = (String)JSON.deserializeUntyped(JSON.serialize(returnmessage));
+                message = deserisalisedMessage.remove('\\');
             }
         } catch (Exception e){
-            message = Label.NotificationErrorProcessing;
+            message = System.Label.NotificationErrorProcessing;
         }
         return message;
     }

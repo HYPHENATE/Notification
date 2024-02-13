@@ -1,11 +1,8 @@
 <!--
-  @description       : Reusable notification component for use throughout salesforce on any object
-  @author            : daniel@hyphen8.com
-  @last modified on  : 16/06/2022
-  @last modified by  : daniel@hyphen8.com
-  Modifications Log 
-  Ver   Date         Author               Modification
-  1.0   01-08-2021   daniel@hyphen8.com   Initial Version
+ * @description       : LWC Component HTML used for rendering a notification on any object
+ * @author            : daniel@hyphen8.com
+ * @last modified on  : 12-02-2024
+ * @last modified by  : daniel@hyphen8.com
 -->
 <template>
     <template if:true={hasMessages}> 
@@ -15,7 +12,10 @@
             </div>
             <div class="slds-media__body">
                 <div class="slds-text-heading_medium">{notificationTitle}</div>
-                <div class="slds-text-body_regular">{message}</div>
+                <div class="slds-text-body_regular">
+                    <lightning-formatted-rich-text value={message}>
+                    </lightning-formatted-rich-text>
+                </div>
             </div>
         </div>
     </template>

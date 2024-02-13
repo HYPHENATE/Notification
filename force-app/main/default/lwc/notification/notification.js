@@ -1,18 +1,16 @@
 /**
- * @description       : 
+ * @description       : LWC Component JS used for rendering a notification on any object
  * @author            : daniel@hyphen8.com
- * @group             : 
- * @last modified on  : 16/06/2022
+ * @last modified on  : 13-02-2024
  * @last modified by  : daniel@hyphen8.com
- * Modifications Log 
- * Ver   Date         Author               Modification
- * 1.0   01-08-2021   daniel@hyphen8.com   Initial Version
 **/
 import { LightningElement, api, wire } from 'lwc';
 
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getNotificationMessage from '@salesforce/apex/NotificationController.getMessage';
 import { getRecord } from 'lightning/uiRecordApi';
-
+import { reduceErrors } from 'c/notificationUtils';
+import labels from 'c/notificationLabels';
 
 export default class Notification extends LightningElement {
 
@@ -24,20 +22,20 @@ export default class Notification extends LightningElement {
     @api notificationMessage;
     @api notificationCriteria;
     @api notificationIcon;
-
-
     message;
     hasMessages;
+    label = labels;
 
+    // getter to determine the SLDS style in on this renderinging
     get scopedVariant() {
-        if(this.componentStyling == 'slds-theme_success'){
-            return 'inverse';
-        } else if(this.componentStyling == 'slds-theme_warning'){
-            return 'warning';
-        } else if(this.componentStyling == 'slds-theme_error'){
-            return 'inverse';
-        } else if(this.componentStyling == 'slds-theme_info'){
-            return 'inverse';
+        if(this.componentStyling == labels.notificationSLDSThemeSuccess){
+            return labels.notificationSLDSThemeSuccessError;
+        } else if(this.componentStyling == labels.notificationSLDSThemeWarning){
+            return labels.notificationSLDSThemeWarningReturn;
+        } else if(this.componentStyling == labels.notificationSLDSThemeError){
+            return labels.notificationSLDSThemeErrorReturn;
+        } else if(this.componentStyling == labels.notificationSLDSThemeInfo){
+            return labels.notificationSLDSThemeInfoReturn;
         } else {
             return '';
         }
@@ -49,11 +47,13 @@ export default class Notification extends LightningElement {
         if (data) {
             this.handleGetMessages();
         } else if (error) {
-            console.error('Wire Error Encountered => ', JSON.stringify(error));
+            this.showToast(labels.notificationWireErrorToastTitle, 
+                            reduceErrors(error).toString(), 
+                            labels.notificationErrorToastType);
         }
     };
 
-    // function to get our message to display
+    // apex function to get our message to display
     handleGetMessages() {
         getNotificationMessage({
             recordId: this.recordId,
@@ -74,14 +74,16 @@ export default class Notification extends LightningElement {
             }
         })
         .catch((error) => {
-            console.error('handleGetMessages error > ' + JSON.stringify(error));
+            this.showToast(labels.notificationApexErrorToastTitle, 
+                            reduceErrors(error).toString(), 
+                            labels.notificationErrorToastType);
             this.messages = undefined;
         });
     }
 
     // get the styling for the alert based on the property
     get alertStyling() {
-        return 'slds-scoped-notification slds-media slds-media_center slds-is-relative slds-var-p-around_medium ' + this.componentStyling;
+        return labels.notificationAlertStylingCSS + ' ' + this.componentStyling;
     }
 
     // intial call back get out data
@@ -92,6 +94,11 @@ export default class Notification extends LightningElement {
     // handle errors no output for it back handling anyway
     errorCallback(error) {
         this.errors = error;
+    }
+
+    // generic dispatch toast event
+    showToast(toastTitle, toastMessage, toastVariant){
+       this.dispatchEvent(new ShowToastEvent({title: toastTitle, message: toastMessage, variant: toastVariant}));
     }
 
 }
