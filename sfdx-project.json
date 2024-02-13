@@ -1,22 +1,23 @@
 {
-    "packageDirectories": [
-        {
-            "path": "force-app",
-            "default": true,
-            "package": "Notification",
-            "versionName": "v1.4",
-            "versionNumber": "1.4.0.NEXT"
-        }
-    ],
-    "namespace": "",
-    "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "59.0",
-    "packageAliases": {
-        "Notification": "0Ho67000000TN4OCAW",
-        "Notification@1.0.0-1": "04t67000000SaF0AAK",
-        "Notification@1.0.0-2": "04t67000000SaW1AAK",
-        "Notification@1.1.0-1": "04t67000000xp7AAAQ",
-        "Notification@1.2.0-1": "04t67000000xp7FAAQ",
-        "Notification@1.3.0-1": "04t67000000xp7KAAQ"
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true,
+      "package": "Notification",
+      "versionName": "v1.4",
+      "versionNumber": "1.4.0.NEXT"
     }
+  ],
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "59.0",
+  "packageAliases": {
+    "Notification": "0Ho67000000TN4OCAW",
+    "Notification@1.0.0-1": "04t67000000SaF0AAK",
+    "Notification@1.0.0-2": "04t67000000SaW1AAK",
+    "Notification@1.1.0-1": "04t67000000xp7AAAQ",
+    "Notification@1.2.0-1": "04t67000000xp7FAAQ",
+    "Notification@1.3.0-1": "04t67000000xp7KAAQ",
+    "Notification@1.4.0-1": "04tQB000000AutlYAC"
+  }
 }
