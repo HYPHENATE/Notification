@@ -1,7 +1,7 @@
 /**
  * @description       : Test class for Notification component
  * @author            : daniel@hyphen8.com
- * @last modified on  : 12-02-2024
+ * @last modified on  : 13-02-2024
  * @last modified by  : daniel@hyphen8.com
 **/
 @isTest
@@ -13,11 +13,11 @@ public class Notification_Test {
     */
     @isTest
     static void testcurrentrecordfield(){
-        Account acc = new Account(Name='TestAccount1');
-        insert acc;
+        Account account = new Account(Name='TestAccount1');
+        insert account;
 
-        string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', 'Name', null);
-        system.assertEquals('TestAccount1', notificationmessage, 'Different message returned');
+        String notificationmessage = NotificationController.getMessage(account.Id, 'Account', 'Name', null);
+        System.assertEquals('TestAccount1', notificationmessage, 'Different message returned');
 
     }
 
@@ -26,13 +26,13 @@ public class Notification_Test {
     */
     @isTest
     static void testparentrecordfield(){
-        Account acc = new Account(Name='TestAccount1');
-        insert acc;
-        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
-        insert con;
+        Account account = new Account(Name='TestAccount1');
+        insert account;
+        Contact contact = new Contact(LastName='TEST USER', AccountId=account.Id);
+        insert contact;
 
-        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Account.Name', null);
-        system.assertEquals('TestAccount1', notificationmessage, 'Different message returned');
+        String notificationmessage = NotificationController.getMessage(contact.Id, 'Contact', 'Account.Name', null);
+        System.assertEquals('TestAccount1', notificationmessage, 'Different message returned');
 
     }
 
@@ -41,13 +41,13 @@ public class Notification_Test {
     */
     @isTest
     static void testerror(){
-        Account acc = new Account(Name='TestAccount1');
-        insert acc;
-        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
-        insert con;
+        Account account = new Account(Name='TestAccount1');
+        insert account;
+        Contact contact = new Contact(LastName='TEST USER', AccountId=account.Id);
+        insert contact;
 
-        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Email', null);
-        system.assertEquals(null, notificationmessage, 'Different message returned');
+        String notificationmessage = NotificationController.getMessage(contact.Id, 'Contact', 'Email', null);
+        System.assertEquals(System.Label.NotificationErrorProcessing, notificationmessage, 'Different message returned');
 
     }
 
@@ -56,13 +56,13 @@ public class Notification_Test {
     */
     @isTest
     static void testerrorparent(){
-        Account acc = new Account(Name='TestAccount1');
-        insert acc;
-        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
-        insert con;
+        Account account = new Account(Name='TestAccount1');
+        insert account;
+        Contact contact = new Contact(LastName='TEST USER', AccountId=account.Id);
+        insert contact;
 
-        string notificationmessage = NotificationController.getMessage(con.Id, 'Contact', 'Account.NameINGERROR', null);
-        system.assertEquals(System.Label.NotificationErrorProcessing, notificationmessage, 'Different message returned');
+        string notificationmessage = NotificationController.getMessage(contact.Id, 'Contact', 'Account.NameINGERROR', null);
+        System.assertEquals(System.Label.NotificationErrorProcessing, notificationmessage, 'Different message returned');
 
     }
 
@@ -71,13 +71,13 @@ public class Notification_Test {
     */
     @isTest
     static void testSuccessWhereClause(){
-        Account acc = new Account(Name='TestAccount1', Rating='Hot');
-        insert acc;
-        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
-        insert con;
+        Account account = new Account(Name='TestAccount1', Rating='Hot');
+        insert account;
+        Contact contact = new Contact(LastName='TEST USER', AccountId=account.Id);
+        insert contact;
 
-        string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', null, 'Rating = \'Hot\'');
-        system.assertEquals(System.Label.NotificationValidationMatch, notificationmessage, 'Different message returned');
+        String notificationmessage = NotificationController.getMessage(account.Id, 'Account', null, 'Rating = \'Hot\'');
+        System.assertEquals(System.Label.NotificationValidationMatch, notificationmessage, 'Different message returned');
 
     }
 
@@ -86,13 +86,13 @@ public class Notification_Test {
     */
     @isTest
     static void testSuccessWhereClauseFail(){
-        Account acc = new Account(Name='TestAccount1', Rating='Hot');
-        insert acc;
-        Contact con = new Contact(LastName='TEST USER', AccountID=acc.Id);
-        insert con;
+        Account account = new Account(Name='TestAccount1', Rating='Hot');
+        insert account;
+        Contact contact = new Contact(LastName='TEST USER', AccountId=account.Id);
+        insert contact;
 
-        string notificationmessage = NotificationController.getMessage(acc.Id, 'Account', null, 'Rating = \'Cold\'');
-        system.assertNotEquals(System.Label.NotificationValidationMatch, notificationmessage, 'Different message returned');
+        String notificationmessage = NotificationController.getMessage(account.Id, 'Account', null, 'Rating = \'Cold\'');
+        System.assertNotEquals(System.Label.NotificationValidationMatch, notificationmessage, 'Different message returned');
 
     }
 

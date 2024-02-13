@@ -1,7 +1,7 @@
 /**
  * @description       : LWC Component JS used for rendering a notification on any object
  * @author            : daniel@hyphen8.com
- * @last modified on  : 12-02-2024
+ * @last modified on  : 13-02-2024
  * @last modified by  : daniel@hyphen8.com
 **/
 import { LightningElement, api, wire } from 'lwc';
@@ -10,7 +10,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getNotificationMessage from '@salesforce/apex/NotificationController.getMessage';
 import { getRecord } from 'lightning/uiRecordApi';
 import { reduceErrors } from 'c/notificationUtils';
-import labels from 'c/labels';
+import labels from 'c/notificationLabels';
 
 export default class Notification extends LightningElement {
 
