@@ -5,7 +5,7 @@
       "default": true,
       "package": "Notification",
       "versionName": "v1.4",
-      "versionNumber": "1.4.0.NEXT"
+      "versionNumber": "1.4.1.NEXT"
     }
   ],
   "namespace": "",
@@ -18,6 +18,7 @@
     "Notification@1.1.0-1": "04t67000000xp7AAAQ",
     "Notification@1.2.0-1": "04t67000000xp7FAAQ",
     "Notification@1.3.0-1": "04t67000000xp7KAAQ",
-    "Notification@1.4.0-1": "04tQB000000AutlYAC"
+    "Notification@1.4.0-1": "04tQB000000AutlYAC",
+    "Notification@1.4.1-1": "04tQB000000CH0HYAW"
   }
 }
