@@ -1,7 +1,7 @@
 /**
  * @description       : LWC Component JS used for rendering a notification on any object
  * @author            : daniel@hyphen8.com
- * @last modified on  : 13-02-2024
+ * @last modified on  : 28/02/2024
  * @last modified by  : daniel@hyphen8.com
 **/
 import { LightningElement, api, wire } from 'lwc';
@@ -29,7 +29,7 @@ export default class Notification extends LightningElement {
     // getter to determine the SLDS style in on this renderinging
     get scopedVariant() {
         if(this.componentStyling == labels.notificationSLDSThemeSuccess){
-            return labels.notificationSLDSThemeSuccessError;
+            return labels.notificationSLDSThemeSuccessReturn;
         } else if(this.componentStyling == labels.notificationSLDSThemeWarning){
             return labels.notificationSLDSThemeWarningReturn;
         } else if(this.componentStyling == labels.notificationSLDSThemeError){
